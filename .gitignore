@@ -1,22 +1,4 @@
-Skip to content
-N3iV
-/
-react-vite-base
-Private
-Code
-Issues
-Pull requests
-Actions
-Projects
-Security
-Insights
-More
-react-vite-base/.gitignore
-@N3iV
-N3iV qrcheckin app
- History
- 1 contributor
-24 lines (22 sloc)  253 Bytes
+
 # Logs
 logs
 *.log
@@ -41,19 +23,5 @@ dist-ssr
 *.njsproj
 *.sln
 *.sw?
-Footer
-© 2023 GitHub, Inc.
-Footer navigation
-Terms
-Privacy
-Security
-Status
-Docs
-Contact GitHub
-Pricing
-API
-Training
-Blog
-About
-react-vite-base/.gitignore at master · N3iV/react-vite-base
-1
+
+.env
