@@ -9,7 +9,12 @@ const {
   AuthFailureError,
   ForbiddenError,
 } = require("../core/error.respose");
-const { findAllDraftOfShop } = require("../models/repositories/product.repo");
+const {
+  findAllDraftOfShop,
+  findAllPublicsOfShop,
+  publicProductByShop,
+  searchProductByUser,
+} = require("../models/repositories/product.repo");
 class ProductFactory {
   static projectRegistry = {};
 
@@ -25,12 +30,27 @@ class ProductFactory {
     return new productClass(payload).createProduct();
   }
 
+  static async publicProductByShop({ product_shop, product_id }) {
+    return await publicProductByShop({ product_id, product_shop });
+  }
+
+  static async searchProduct({ keySearch }) {
+    return await searchProductByUser({ keySearch });
+  }
+
   static async findAllDraftOfShop({ product_shop, limit = 50, skip = 0 }) {
     const query = {
       product_shop,
       isDraft: true,
     };
-    return findAllDraftOfShop({ query, limit, skip });
+    return await findAllDraftOfShop({ query, limit, skip });
+  }
+  static async findAllPublicsOfShop({ product_shop, limit = 50, skip = 0 }) {
+    const query = {
+      product_shop,
+      isPublic: true,
+    };
+    return await findAllPublicsOfShop({ query, limit, skip });
   }
 }
 
