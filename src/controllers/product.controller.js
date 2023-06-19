@@ -25,6 +25,16 @@ class ProductController {
       }),
     }).send(res);
   };
+  unPublicProductByShop = async (req, res, next) => {
+    console.log(req.params.id);
+    new SuccessResponse({
+      message: "Public product success",
+      metadata: await ProductServiceStrategy.unPublicProductByShop({
+        product_id: req.params.id,
+        product_shop: req.user.userID,
+      }),
+    }).send(res);
+  };
   searchProduct = async (req, res, next) => {
     console.log(req.params.id);
     new SuccessResponse({
@@ -32,6 +42,23 @@ class ProductController {
       metadata: await ProductServiceStrategy.searchProduct(req.params),
     }).send(res);
   };
+
+  getProducts = async (req, res, next) => {
+    new SuccessResponse({
+      message: "Get products success",
+      metadata: await ProductServiceStrategy.findProducts(req.query),
+    }).send(res);
+  };
+
+  getProductByID = async (req, res, next) => {
+    new SuccessResponse({
+      message: "Get products success",
+      metadata: await ProductServiceStrategy.findProduct({
+        product_id: req.params.id,
+      }),
+    }).send(res);
+  };
+
   getAllDraftsOfShop = async (req, res, next) => {
     new SuccessResponse({
       message: "Get draft products success",

@@ -14,6 +14,9 @@ const {
   findAllPublicsOfShop,
   publicProductByShop,
   searchProductByUser,
+  unPublicProductByShop,
+  findProducts,
+  findProduct,
 } = require("../models/repositories/product.repo");
 class ProductFactory {
   static projectRegistry = {};
@@ -33,9 +36,34 @@ class ProductFactory {
   static async publicProductByShop({ product_shop, product_id }) {
     return await publicProductByShop({ product_id, product_shop });
   }
-
+  static async unPublicProductByShop({ product_shop, product_id }) {
+    return await unPublicProductByShop({ product_id, product_shop });
+  }
   static async searchProduct({ keySearch }) {
     return await searchProductByUser({ keySearch });
+  }
+
+  static async findProducts({
+    limit = 50,
+    sort = "ctime",
+    page = 1,
+    filter = { isPublic: true },
+  }) {
+    return await findProducts({
+      limit,
+      sort,
+      page,
+      filter,
+      select: ["product_name", "product_price", "product_thumb"],
+    });
+  }
+
+  static async findProduct({ product_id }) {
+    console.log(product_id);
+    return await findProduct({
+      product_id,
+      unSelect: ["__v", "product_variations"],
+    });
   }
 
   static async findAllDraftOfShop({ product_shop, limit = 50, skip = 0 }) {
